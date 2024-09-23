@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="UTF-8" />
+        <title>Cadastro de Tarefa</title>
+        <link rel="stylesheet" type="text/css" href="glowup.css" /> <!-- Referência  ao CSS -->
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1>Cadastre sua Tarefa</h1>
+            <h:form>
+                <h:messages styleClass="error" />
+                <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+                    <p:outputLabel for="titulo" value="Título:" />
+                    <p:inputText id="titulo" value="#{tarefaBean.titulo}" required="true" requiredMessage="Título é obrigatório." />
+
+                    <p:outputLabel for="descricao" value="Descrição:" />
+                    <p:inputTextarea id="descricao" value="#{tarefaBean.descricao}" required="true" requiredMessage="Descrição é obrigatória." />
+
+                    <p:outputLabel for="responsavel" value="Responsável:" />
+                    <h:selectOneMenu id="responsavel" value="#{tarefaBean.responsavel}" required="true" requiredMessage="Responsável é obrigatório.">
+                        <f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+                        <f:selectItem itemLabel="Erick" itemValue="ERICK" />
+                        <f:selectItem itemLabel="João" itemValue="JOAO" />
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="prioridade" value="Prioridade:" />
+                    <h:selectOneMenu id="prioridade" value="#{tarefaBean.prioridade}" required="true" requiredMessage="Prioridade é obrigatória.">
+                        <f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+                        <f:selectItem itemLabel="Baixa" itemValue="BAIXA" />
+                        <f:selectItem itemLabel="Média" itemValue="MEDIA" />
+                        <f:selectItem itemLabel="Alta" itemValue="ALTA" />
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="deadline" value="Prazo:" />
+                    <p:inputText id="deadline" value="#{tarefaBean.deadline}" required="true" requiredMessage="Prazo é obrigatório."
+                                 placeholder="dd/MM/yyyy">
+                        <f:convertDateTime pattern="dd/MM/yyyy" message="Data inválida. Utilize o formato dd/MM/yyyy" />
+                    </p:inputText>
+                </h:panelGrid>
+                <p:commandButton value="Cadastrar" action="#{tarefaBean.cadastrarTarefa}" update="@form" />
+                <p:commandButton value="Consultar Tarefas" action="ConsultarTarefas" immediate="true" style="margin-left: 10px;" />
+            </h:form>
+        </div>
+    </h:body>
+</html>

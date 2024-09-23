@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Listagem de Tarefas</title>
+    <link rel="stylesheet" type="text/css" href="Tabelaglowup.css" /> <!-- Referência ao CSS -->
+</h:head>
+<h:body>
+    <h:form id="ConsultarTarefas">
+        <p:panelGrid columns="1">
+            <h:outputLabel for="id" value="ID:" />
+            <p:inputText id="id" value="#{consultaTarefasBean.idBusca}" />
+
+            <h:outputLabel for="situacao" value="Situação:" />
+            <p:selectOneMenu id="situacao" value="#{consultaTarefasBean.situacaoBusca}">
+                <f:selectItem itemValue="" itemLabel="Selecione" />
+                <f:selectItem itemValue="EM_ANDAMENTO" itemLabel="Em andamento" />
+                <f:selectItem itemValue="CONCLUIDA" itemLabel="Concluída" />
+            </p:selectOneMenu>
+
+            <h:outputLabel for="responsavel" value="Responsável:" />
+            <p:selectOneMenu id="responsavel" value="#{consultaTarefasBean.responsavelBusca}">
+                <f:selectItem itemValue="" itemLabel="Todos" />
+                <f:selectItem itemValue="ERICK" itemLabel="Erick" />
+                <f:selectItem itemValue="JOAO" itemLabel="João" />
+            </p:selectOneMenu>
+
+            <h:panelGroup layout="block" style="display: flex; gap: 10px;">
+                <p:commandButton value="Buscar Tarefas" action="#{consultaTarefasBean.buscarTarefas}">
+                    <f:ajax execute="@form" render="tabelaTarefas" />
+                </p:commandButton>
+            </h:panelGroup>
+        </p:panelGrid>
+
+        <p:dataTable id="tabelaTarefas" value="#{consultaTarefasBean.tarefas}" var="tarefa" emptyMessage="Nenhuma tarefa encontrada.">
+            <p:column headerText="ID">
+                <h:outputText value="#{tarefa.id}" />
+            </p:column>
+            <p:column headerText="Título">
+                <h:outputText value="#{tarefa.titulo}" />
+            </p:column>
+            <p:column headerText="Descrição">
+                <h:outputText value="#{tarefa.descricao}" />
+            </p:column>
+            <p:column headerText="Responsável">
+                <h:outputText value="#{tarefa.responsavel}" />
+            </p:column>
+            <p:column headerText="Situação">
+                <h:outputText value="#{tarefa.situacao}" />
+            </p:column>
+            <p:column headerText="Prioridade">
+                <h:outputText value="#{tarefa.prioridade}" />
+            </p:column>
+            <p:column headerText="Ações">
+                <p:commandButton value="Editar" action="#{consultaTarefasBean.editarTarefa(tarefa)}"
+                                 update=":ConsultarTarefas:formEdicao" oncomplete="PF('formEdicao').show();" />
+                <p:commandButton value="Excluir" action="#{consultaTarefasBean.excluirTarefa(tarefa)}"
+                                 update=":ConsultarTarefas:tabelaTarefas" />
+                <p:commandButton value="Concluir" action="#{consultaTarefasBean.concluirTarefa(tarefa)}"
+                                 update=":ConsultarTarefas:tabelaTarefas" />
+            </p:column>
+        </p:dataTable>
+
+        <p:dialog id="formEdicao" widgetVar="formEdicao" modal="true" header="Editar Tarefa" resizable="false" closeOnEscape="true">
+            <p:panelGrid columns="2">
+                <h:outputLabel for="tituloEdit" value="Título:" />
+                <p:inputText id="tituloEdit" value="#{consultaTarefasBean.tarefaSelecionada.titulo}" />
+
+                <h:outputLabel for="descricaoEdit" value="Descrição:" />
+                <p:inputTextarea id="descricaoEdit" value="#{consultaTarefasBean.tarefaSelecionada.descricao}" rows="4" cols="30" />
+
+                <h:outputLabel for="responsavelEdit" value="Responsável:" />
+                <p:inputText id="responsavelEdit" value="#{consultaTarefasBean.tarefaSelecionada.responsavel}" />
+
+                <h:outputLabel for="deadlineEdit" value="Prazo:" />
+                <p:calendar id="deadlineEdit" value="#{consultaTarefasBean.tarefaSelecionada.deadline}" pattern="dd/MM/yyyy" />
+
+                <h:outputLabel for="prioridadeEdit" value="Prioridade:" />
+                <p:selectOneMenu id="prioridadeEdit" value="#{consultaTarefasBean.tarefaSelecionada.prioridade}">
+                    <f:selectItem itemValue="BAIXA" itemLabel="Baixa" />
+                    <f:selectItem itemValue="MEDIA" itemLabel="Média" />
+                    <f:selectItem itemValue="ALTA" itemLabel="Alta" />
+                </p:selectOneMenu>
+            </p:panelGrid>
+
+            <p:commandButton value="Salvar" action="#{consultaTarefasBean.atualizarTarefa()}"
+                             update=":ConsultarTarefas:tabelaTarefas" oncomplete="PF('formEdicao').hide();" />
+            <p:commandButton value="Cancelar" onclick="PF('formEdicao').hide();" type="button" />
+        </p:dialog>
+
+        <h:panelGroup rendered="#{empty consultaTarefasBean.tarefas}">
+            <h:outputText value="Nenhuma tarefa cadastrada." />
+        </h:panelGroup>
+    </h:form>
+</h:body>
+</html>

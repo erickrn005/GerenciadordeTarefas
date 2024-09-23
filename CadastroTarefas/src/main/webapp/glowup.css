@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+body {
+    background-color: #F3F4F6; /* Fundo cinza muito claro */
+    color: #111827; /* Texto principal preto suave */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove padding padrão */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Ocupa toda a altura da viewport */
+}
+
+.container {
+    text-align: left; /* Alinha o texto à esquerda */
+    width: 100%; /* Para garantir que ocupa toda a largura */
+    max-width: 600px; /* Largura máxima do formulário */
+    padding: 20px; /* Adiciona espaçamento interno */
+    background-color: white; /* Fundo branco para o formulário */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+h1 {
+    color: #3B82F6; /* Azul brilhante para títulos */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    text-align: left; /* Garante que o título esteja alinhado à esquerda */
+}
+
+p {
+    color: #374151; /* Cinza escuro para parágrafos */
+}
+
+a {
+    color: #2563EB; /* Azul vibrante para links */
+}
+
+.success {
+    color: #10B981; /* Verde para mensagens de sucesso */
+}
+
+.alert {
+    color: #FBBF24; /* Amarelo para alertas */
+}
+
+.error {
+    color: #EF4444; /* Vermelho para mensagens de erro */
+}
+
+.button {
+    background-color: #3B82F6; /* Azul para botões */
+    color: white; /* Texto dos botões em branco */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2563EB; /* Azul vibrante ao passar o mouse */
+}
+
+
+#titulo {
+	
+    box-shadow: none;
+    border-radius: 8px;
+    
+}

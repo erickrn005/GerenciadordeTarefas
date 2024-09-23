@@ -5,11 +5,11 @@ Este é um projeto de gerenciamento de tarefas desenvolvido utilizando Java, Jav
 Funcionalidades Implementadas:
 O projeto possui as seguintes funcionalidades implementadas:
 
-a) Cadastro de Tarefas: Permite cadastrar novas tarefas com as seguintes informações: título, descrição, responsável, prioridade e deadline.
+a) Cadastro de Tarefas: Permite cadastrar novas tarefas com as seguintes informações: título, descrição, responsável, situação, prioridade e deadline.
 
 b) Listagem de Tarefas: Exibe uma tabela com todas as tarefas cadastradas, exibindo os campos de Id, título, descrição, responsável, situação, prioridade, deadline e ações. (editar, excluir e concluir).
 
-c) Edição de Tarefas: Permite editar as informações de uma tarefa existente, incluindo título, descrição, responsável, prioridade e deadline.
+c) Edição de Tarefas: Permite editar as informações de uma tarefa existente, incluindo título, descrição, responsável, situação e deadline.
 
 d) Exclusão de Tarefas: Permite excluir uma tarefa do sistema.
 
